@@ -21,9 +21,13 @@ Or install it yourself as:
 ## Usage
 
 So, you have a class.
+
 That class has instance methods.
+
 _some_ of those methods return a hash.
-_it might be_ nice to get that has a super-duper `OpenStruct`.
+
+_it might be_ nice to get that hash as a super-duper `OpenStruct`.
+
 *Enter Structifier*
 
 ### Example
@@ -45,8 +49,8 @@ car.properties[:make] #Ford
 car.properties.make #NoMethodError: undefined method `make' for #<Hash:0x007f8fd4a43dd0>
 ```
 
-*Structify It*
-### Example
+**Structify It**
+
 ```ruby
 class Car
   #...
