@@ -1,8 +1,6 @@
 # Structifier
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/structifier`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Auto-Open-Struct-Ify your ruby class!
 
 ## Installation
 
@@ -22,8 +20,56 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+So, you have a class.
+That class has instance methods.
+_some_ of those methods return a hash.
+_it might be_ nice to get that has a super-duper `OpenStruct`.
+*Enter Structifier*
 
+### Example
+```ruby
+class Car
+  #...
+  def properties
+    {
+      make: "Ford",
+      model: "Gran Torino",
+      year: 1973,
+      owner: "The Dude"
+    }
+  end
+end
+
+car = Car.new
+car.properties[:make] #Ford
+car.properties.make #NoMethodError: undefined method `make' for #<Hash:0x007f8fd4a43dd0>
+```
+
+*Structify It*
+### Example
+```ruby
+class Car
+  #...
+  def properties
+    {
+      make: "Ford",
+      model: "Gran Torino",
+      year: 1973,
+      owner: "The Dude"
+    }
+  end
+
+  def as_struct
+    Structifier::Base.new(self)
+  end
+end
+
+car = Car.new
+car.properties[:make] #Ford
+car.as_struct.properties.make #Ford
+```
+
+  
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -32,5 +78,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/structifier.
+Bug reports and pull requests are welcome on GitHub at https://github.com/thekidcoder/structifier.
 
